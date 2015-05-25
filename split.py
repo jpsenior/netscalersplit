@@ -64,7 +64,7 @@ for item in text:
     for entry in line:
         #Remove blank lines, it makes the Netscaler parser error out
         if entry.split():
-            response.append('"%s" + ' % entry)
+            response.append('"%s\\n" + ' % entry)
 
 response.append('""')
 with open("output.txt", "wb+") as f:
