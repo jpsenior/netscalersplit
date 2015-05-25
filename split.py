@@ -33,6 +33,7 @@ parser = argparse.ArgumentParser(description=
 parser.add_argument('--output', help="Specify an output type.", choices=["GUI","CLI"], default="GUI")
 parser.add_argument('filename', nargs='?', help="Specify an HTML file to build a response for")
 
+#Allow a user to specify a filename or stdin to convert documents
 args = parser.parse_args()
 if args.filename:
     string = open(args.filename).read()
@@ -53,7 +54,9 @@ string = string.replace('"', '\\"')
 # Split data up into 250-character chunks (Netscaler has a maximum of 255)
 text = [string[item:item+250] for item in range(0, len(string), 250)]
 
+
 response = list()
+#503 service unavailable messages will not be cached by a browser.
 response.append('"HTTP/1.1 503 Service Unavailable\\r\\n\\r\\n" + ')
 for item in text:
     line = item.split('\n')
@@ -62,6 +65,7 @@ for item in text:
 
 response.append('""')
 
+#Some silly copy-paste stuff for end users.
 if args.output == 'GUI':
     print ''.join(response)
 elif args.output == 'CLI':
