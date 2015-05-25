@@ -15,7 +15,8 @@ split.py maintenance.html
 should show some simple output:
 
 Running python split.py maintenance.html should give the output below, which allows fast and easy copy-paste onto
-netscaler.
+netscaler.  This script will also output to output.txt.  You must copy the output without any newlines for the netscaler
+wizard to run properly.
 
 
     "HTTP/1.1 503 Service Unavailable\r\n\r\n" + "<!doctype html>" + "<title>Site Maintenance</title>" + "<style>" + "  body { text-align: center; padding: 150px; }" + "  h1 { font-size: 50px; }" + "  body { font: 20px Helvetica, sans-serif;
